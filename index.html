@@ -124,6 +124,22 @@
         // port     = '25566'
 
         $(document).ready(function () {
+            let backGround = [
+                'https://cdn.discordapp.com/attachments/586823238957531158/802102051449339904/unknown.png',
+                'https://cdn.discordapp.com/attachments/436861127838924813/801799873153466388/unknown.png',
+                'https://cdn.discordapp.com/attachments/586823238957531158/802102105921814538/unknown.png',
+                'https://cdn.discordapp.com/attachments/436861127838924813/801797366302244864/unknown.png'
+            ]
+            let backIndx = Math.floor(Math.random() * backGround.length)
+            $("#styleNya").html(`
+                body {
+                    background: url("${backGround[backIndx]}") no-repeat center center fixed;
+                    -webkit-background-size: cover;
+                    -moz-background-size: cover;
+                    -o-background-size: cover;
+                    background-size: cover;
+                }
+            `)
             getStatus()
         })
 
@@ -136,22 +152,6 @@
                     $("#loading").addClass("d-none")
                 },
                 success: function (result) {
-                    let backGround = [
-                        'https://cdn.discordapp.com/attachments/586823238957531158/802102051449339904/unknown.png',
-                        'https://cdn.discordapp.com/attachments/436861127838924813/801799873153466388/unknown.png',
-                        'https://cdn.discordapp.com/attachments/586823238957531158/802102105921814538/unknown.png',
-                        'https://cdn.discordapp.com/attachments/436861127838924813/801797366302244864/unknown.png'
-                    ]
-                    let backIndx = Math.floor(Math.random() * backGround.length)
-                    $("#styleNya").html(`
-                        body {
-                            background: url("${backGround[backIndx]}") no-repeat center center fixed;
-                            -webkit-background-size: cover;
-                            -moz-background-size: cover;
-                            -o-background-size: cover;
-                            background-size: cover;
-                        }
-                    `)
                     $("#server").removeClass('d-none')
                     if (result.online == false) {
                         $("#serverOnline").addClass("d-none")
