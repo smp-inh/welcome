@@ -6,10 +6,10 @@ hostName = hostName.split(':')
 
 // hostName = hostName[0]
 hostName = '185.201.8.233'
-port     = '25565'
+port = '25565'
 // port     = '25566'
 
-$(document).ready(function() {
+$(document).ready(function () {
     getStatus()
 })
 
@@ -18,10 +18,22 @@ function getStatus() {
         url: `https://api.mcsrvstat.us/2/${ hostName }`,
         type: "GET",
         dataType: "JSON",
-        complete: function() {
+        complete: function () {
             $("#loading").addClass("d-none")
         },
-        success: function(result) {
+        success: function (result) {
+            var date = new Date()
+            let cekTime = (date.getHours() > 18 || date.getHours() < 6)
+            let timeNya = cekTime == true ? 'night' : 'day'        
+            $("#styleNya").html(`
+                body {
+                    background: url("background/background-${timeNya}.png") no-repeat center center fixed;
+                    -webkit-background-size: cover;
+                    -moz-background-size: cover;
+                    -o-background-size: cover;
+                    background-size: cover;
+                }
+            `)
             $("#server").removeClass('d-none')
             if (result.online == false) {
                 $("#serverOnline").addClass("d-none")
@@ -43,7 +55,7 @@ function getStatus() {
             // let mods_ = ''
             let players_ = ''
             // let mods = []
-            if (result.players.online != 0) { 
+            if (result.players.online != 0) {
                 players = result.players.list
                 players.sort()
             }
@@ -60,7 +72,8 @@ function getStatus() {
                 players_ += `<b>${player}</b>, `
             });
             players_ = players_.substr(0, players_.length - 2)
-            $("#serverPlayers").html(players_)
+            let html = `<tr><td>${players_}</tr></td>`
+            $("#serverPlayers").html(html)
         }
     })
 }
