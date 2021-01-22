@@ -14,9 +14,26 @@
             -o-background-size: cover;
             background-size: cover;
         }
-        .card-menkrep {
-            background-color: rgba(245, 245, 245, 1);
-            opacity: .6;
+        .card {
+            border: 0;
+        }
+        .card-body {
+            background-color: #202225;
+            color: #fff;
+        }
+        .card-body tr td {
+            color: #8a8e94;
+        }
+        .card-menkrep-header {
+            background-color: #7289da;
+        }
+        .table td, .table th {
+            padding: .75rem;
+            vertical-align: top;
+            border-top: 1px solid #8a8e94;
+            border-bottom: 1px solid #8a8e94;
+            border-left: 1px solid #8a8e94;
+            border-right: 1px solid #8a8e94;
         }
     </style>
 </head>
@@ -40,12 +57,12 @@
 
                 <div class="col-xl-6 col-md-6 col-sm-12 d-none" id="serverOnline">
                     <div class="card mt-4 mb-5 ">
-                        <div class="card-header text-center bg-dark text-white">
+                        <div class="card-header text-center card-menkrep-header text-white">
                             Welcome to <b id="serverName"></b>
                         </div>
                         <div class="card-body ">
-                            <h5 class="text-center mb-3">Minecraft Server</h5>
-                            <table class="table text-center table-bordered table-status">
+                            <h6 class="text-center mb-3">Minecraft Server</h6>
+                            <table class="table text-center">
                                 <tr>
                                     <td class="p-1">IP</td>
                                     <td class="p-1" id="serverIp"></td>
@@ -67,7 +84,7 @@
                                     <td class="p-1" id="serverMods"></td>
                                 </tr> -->
                             </table>
-                            <h5 class="text-center mb-3">Players Online (<b id="slot"></b>)</h5>
+                            <h6 class="text-center mb-3">Players Online (<b id="slot"></b>)</h6>
                             <table class="table text-center table-bordered">
                                 <tr>
                                     <td id="serverPlayers"></td>
@@ -76,9 +93,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6 col-md-6 col-sm-12 d-none" id="serverOffline">
+                <div class="col-xl-6 col-md-6 col-sm-12 d-none card-menkrep" id="serverOffline">
                     <div class="card mt-4 mb-5 ">
-                        <div class="card-header text-center bg-dark text-white">
+                        <div class="card-header text-center card-menkrep-header text-white">
                             Server Offline
                         </div>
                         <div class="card-body ">
