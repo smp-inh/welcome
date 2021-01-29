@@ -119,8 +119,8 @@
         hostName = hostName.split(':')
 
         // hostName = hostName[0]
-        hostName = '185.201.8.233'
-        port = '25565'
+        port = '25617'
+        hostName = '164.132.241.245:' + port
         // port     = '25566'
 
         $(document).ready(function () {
@@ -128,7 +128,12 @@
                 'https://cdn.discordapp.com/attachments/586823238957531158/802102051449339904/unknown.png',
                 'https://cdn.discordapp.com/attachments/436861127838924813/801799873153466388/unknown.png',
                 'https://cdn.discordapp.com/attachments/586823238957531158/802102105921814538/unknown.png',
-                'https://cdn.discordapp.com/attachments/436861127838924813/801797366302244864/unknown.png'
+                'https://cdn.discordapp.com/attachments/586823238957531158/803599894988324874/2021-01-26_19.10.59.png',
+                'https://cdn.discordapp.com/attachments/586823238957531158/803580966215614494/2021-01-26_17.53.06.png',
+                'https://cdn.discordapp.com/attachments/436861127838924813/801797366302244864/unknown.png',
+                'https://cdn.discordapp.com/attachments/586823238957531158/803337060315299911/2021-01-26_01.50.42.png',
+                'https://cdn.discordapp.com/attachments/586823238957531158/803337023896551464/2021-01-26_01.53.00.png',
+                'https://cdn.discordapp.com/attachments/586823238957531158/803599884300451840/2021-01-26_19.11.26.png'
             ]
             let backIndx = Math.floor(Math.random() * backGround.length)
             $("#styleNya").html(`
@@ -162,7 +167,7 @@
                         $("#serverLogo").attr('src', result.icon)
                         $("#title").html(result.motd.clean)
                         $("#serverName").html(result.motd.html)
-                        $("#serverIp").html(`<b>${hostName}</b>`)
+                        $("#serverIp").html(`<b>${hostName}:${result.port}</b>`)
                         $("#serverPort").html(`<b>${result.port}</b>`)
                         $("#serverStatus").html(result.online == true ? '<b>Online</b>' : '<b>Offline</b>')
                         $("#serverVersion").html(`<b> ${result.version} </b>`)
