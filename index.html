@@ -167,7 +167,7 @@
                         $("#serverLogo").attr('src', result.icon)
                         $("#title").html(result.motd.clean)
                         $("#serverName").html(result.motd.html)
-                        $("#serverIp").html(`<b>${hostName}:${result.port}</b>`)
+                        $("#serverIp").html(`<b>${hostName}</b>`)
                         $("#serverPort").html(`<b>${result.port}</b>`)
                         $("#serverStatus").html(result.online == true ? '<b>Online</b>' : '<b>Offline</b>')
                         $("#serverVersion").html(`<b> ${result.version} </b>`)
