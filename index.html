@@ -35,6 +35,21 @@
             border-left: 1px solid #8a8e94;
             border-right: 1px solid #8a8e94;
         }
+        .bungkus {
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            padding: 21px;
+        }
+        .atas {
+            border-top-left-radius: 5px !important;
+            border-top-right-radius: 5px !important;
+        }
+        body {
+            background-color: #32353B;
+        }
+        .bg-transparent {
+            background-color: transparent;
+        }
     </style>
     <style id="styleNya">
 
@@ -59,21 +74,21 @@
                 </div>
 
                 <div class="col-xl-6 col-md-6 col-sm-12 d-none" id="serverOnline">
-                    <div class="card mt-4 mb-5 ">
-                        <div class="card-header text-center card-menkrep-header text-white">
+                    <div class="card mt-4 mb-5 bg-transparent">
+                        <div class="card-header atas text-center card-menkrep-header text-white">
                             Welcome to <b id="serverName"></b>
                         </div>
-                        <div class="card-body ">
+                        <div class="card-body bungkus">
                             <h6 class="text-center mb-3">Minecraft Server</h6>
                             <table class="table text-center">
                                 <tr>
                                     <td class="p-1">IP</td>
                                     <td class="p-1" id="serverIp"></td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td class="p-1">Port</td>
                                     <td class="p-1" id="serverPort"></td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <td class="p-1">Status</td>
                                     <td class="p-1" id="serverStatus"></td>
@@ -146,15 +161,15 @@
                 'https://cdn.discordapp.com/attachments/586823238957531158/803599884300451840/2021-01-26_19.11.26.png'
             ]
             let backIndx = Math.floor(Math.random() * backGround.length)
-            $("#styleNya").html(`
-                body {
-                    background: url("${backGround[backIndx]}") no-repeat center center fixed;
-                    -webkit-background-size: cover;
-                    -moz-background-size: cover;
-                    -o-background-size: cover;
-                    background-size: cover;
-                }
-            `)
+            // $("#styleNya").html(`
+            //     body {
+            //         background: url("${backGround[backIndx]}") no-repeat center center fixed;
+            //         -webkit-background-size: cover;
+            //         -moz-background-size: cover;
+            //         -o-background-size: cover;
+            //         background-size: cover;
+            //     }
+            // `)
             getStatus()
         })
 
@@ -168,19 +183,20 @@
                 },
                 success: function (result) {
                     $("#server").removeClass('d-none')
+                    $("#serverLogo").attr('src', result.icon ??'https://cdn.discordapp.com/attachments/752130537455484999/833563394980315176/offline-internet.png')
                     if (result.online == false) {
                         $("#serverOnline").addClass("d-none")
                         $("#serverOffline").removeClass("d-none")
+                        $("#serverLogo").attr('style', 'width:50px')
                     } else {
                         $("#serverOnline").removeClass("d-none")
                         $("#serverOffline").addClass("d-none")
-                        $("#serverLogo").attr('src', result.icon)
                         $("#title").html(result.motd.clean)
                         $("#serverName").html(result.motd.html)
                         $("#serverIp").html(`<b>${hostName}</b>`)
                         $("#serverPort").html(`<b>${result.port}</b>`)
                         $("#serverStatus").html(result.online == true ? '<b>Online</b>' : '<b>Offline</b>')
-                        $("#serverVersion").html(`<b> ${result.version} </b>`)
+                        $("#serverVersion").html(`<b> ${result.software} ${result.version} </b>`)
                         $("#slot").html(`${result.players.online}/${result.players.max}`)
                         let players = []
                         // let tampungMods = result.mods.raw
@@ -200,6 +216,7 @@
                         // })
                         // mods_ = mods_.substr(0, mods_.length - 2)
                         // $("#serverMods").html(mods_)
+                        players.length == 0 ? $("#serverPlayers").addClass('d-none') : $("#serverPlayers").removeClass('d-none')
                         players.forEach(player => {
                             players_ += `<b>${player}</b>, `
                         });
