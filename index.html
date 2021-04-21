@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="SMP INH">
     <meta property="og:description" content="Official Minecraft Server INH">
-    <meta property="og:image" content="https://cdn.discordapp.com/emojis/436898175840813059.png">
+    <meta property="og:image" content="https://cdn.discordapp.com/attachments/752130537455484999/834404279288725544/server-icon.png">
     <meta property="og:url" content="https://minecraft.xyrus10.com/">
-    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/emojis/436898175840813059.png" />
+    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/752130537455484999/834404279288725544/server-icon.png" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title id="title">Minecraft</title>
+    <title id="title">Minecraft Server</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <style>
         .card {
@@ -46,6 +46,7 @@
         }
         body {
             background-color: #32353B;
+            /* background-color: #f3f3f3; */
         }
         .bg-transparent {
             background-color: transparent;
@@ -74,13 +75,13 @@
                 </div>
 
                 <div class="col-xl-6 col-md-6 col-sm-12 d-none" id="serverOnline">
-                    <div class="card mt-4 mb-5 bg-transparent">
+                    <div class="card mt-4 mb-5 bg-transparent shadow">
                         <div class="card-header atas text-center card-menkrep-header text-white">
                             Welcome to <b id="serverName"></b>
                         </div>
-                        <div class="card-body bungkus">
+                        <div class="card-body bungkus pt-3 pb-2">
                             <h6 class="text-center mb-3">Minecraft Server</h6>
-                            <table class="table text-center">
+                            <table class="table table-borderless text-center">
                                 <tr>
                                     <td class="p-1">IP</td>
                                     <td class="p-1" id="serverIp"></td>
@@ -121,7 +122,8 @@
                 </div>
                 <div class="col-xl-6 col-md-6 col-sm-12">
                     <div class="mt-4 mb-5">
-                        <iframe src="https://discord.com/widget?id=436861127838924811&theme=dark" width="100%"
+                        <iframe class="shadow" src="https://discord.com/widget?id=436861127838924811&theme=dark"
+                            width="100%"
                             height="500" allowtransparency="true" frameborder="0"
                             sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
                     </div>
@@ -137,15 +139,8 @@
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
     </script>
     <script>
-        var hostName = window.location.origin
-        hostName = hostName.replace('http://', '')
-        hostName = hostName.replace('https://', '')
-        hostName = hostName.replace('www', '')
-        hostName = hostName.split(':')
-
-        // hostName = hostName[0]
-        port = '25617'
-        hostName = '164.132.241.245:' + port
+        const serverIp = '164.132.241.245:25617'
+        // const serverIp = 'mc.hypixel.net'
         // port     = '25566'
 
         $(document).ready(function () {
@@ -175,7 +170,7 @@
 
         function getStatus() {
             $.ajax({
-                url: `https://api.mcsrvstat.us/2/${ hostName }`,
+                url: `https://api.mcsrvstat.us/2/${ serverIp }`,
                 type: "GET",
                 dataType: "JSON",
                 complete: function () {
@@ -193,10 +188,10 @@
                         $("#serverOffline").addClass("d-none")
                         $("#title").html(result.motd.clean)
                         $("#serverName").html(result.motd.html)
-                        $("#serverIp").html(`<b>${hostName}</b>`)
+                        $("#serverIp").html(`<b>${serverIp}</b>`)
                         $("#serverPort").html(`<b>${result.port}</b>`)
                         $("#serverStatus").html(result.online == true ? '<b>Online</b>' : '<b>Offline</b>')
-                        $("#serverVersion").html(`<b> ${result.software} ${result.version} </b>`)
+                        $("#serverVersion").html(`<b> ${result.software ?? ""} ${result.version} </b>`)
                         $("#slot").html(`${result.players.online}/${result.players.max}`)
                         let players = []
                         // let tampungMods = result.mods.raw
@@ -205,7 +200,7 @@
                         // let mods = []
                         if (result.players.online != 0) {
                             players = result.players.list
-                            players.sort()
+                            players?.sort()
                         }
                         // Object.values(tampungMods).forEach(mod => {
                         //     mods.push(mod)
@@ -216,13 +211,15 @@
                         // })
                         // mods_ = mods_.substr(0, mods_.length - 2)
                         // $("#serverMods").html(mods_)
-                        players.length == 0 ? $("#serverPlayers").addClass('d-none') : $("#serverPlayers").removeClass('d-none')
-                        players.forEach(player => {
+                        players?.length == 0 ? $("#serverPlayers").addClass('d-none') : $("#serverPlayers").removeClass('d-none')
+                        let playerFlag = 0;
+                        players?.forEach(player => {
                             players_ += `<b>${player}</b>, `
+                            playerFlag++;
                         });
                         players_ = players_.substr(0, players_.length - 2)
                         let html = `<tr><td>${players_}</tr></td>`
-                        $("#serverPlayers").html(html)
+                        if (playerFlag > 0) $("#serverPlayers").html(html)
                     }
                 }
             })
