@@ -6,26 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="SMP INH">
     <meta property="og:description" content="Official Minecraft Server INH">
-    <meta property="og:image" content="https://cdn.discordapp.com/attachments/752130537455484999/834404279288725544/server-icon.png">
+    <meta property="og:image"
+        content="https://cdn.discordapp.com/attachments/752130537455484999/834404279288725544/server-icon.png">
     <meta property="og:url" content="https://minecraft.xyrus10.com/">
-    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/752130537455484999/834404279288725544/server-icon.png" />
+    <link rel="icon" type="image/png"
+        href="https://cdn.discordapp.com/attachments/752130537455484999/834404279288725544/server-icon.png" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title id="title">Minecraft Server</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <style>
         .card {
             border: 0;
         }
+
         .card-body {
             background-color: #202225;
             color: #fff;
         }
+
         .card-body tr td {
             color: #8a8e94;
         }
+
         .card-menkrep-header {
             background-color: #7289da;
         }
+
         .table td,
         .table th {
             padding: .75rem;
@@ -35,21 +42,42 @@
             border-left: 1px solid #8a8e94;
             border-right: 1px solid #8a8e94;
         }
+
         .bungkus {
             border-bottom-left-radius: 5px;
             border-bottom-right-radius: 5px;
             padding: 21px;
         }
+
         .atas {
             border-top-left-radius: 5px !important;
             border-top-right-radius: 5px !important;
         }
+
         body {
             background-color: #32353B;
             /* background-color: #f3f3f3; */
         }
+
         .bg-transparent {
             background-color: transparent;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #32353B;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #59595a;
+            border-radius: 20px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #737374;
         }
     </style>
     <style id="styleNya">
@@ -123,8 +151,7 @@
                 <div class="col-xl-6 col-md-6 col-sm-12">
                     <div class="mt-4 mb-5">
                         <iframe class="shadow" src="https://discord.com/widget?id=436861127838924811&theme=dark"
-                            width="100%"
-                            height="500" allowtransparency="true" frameborder="0"
+                            width="100%" height="500" allowtransparency="true" frameborder="0"
                             sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
                     </div>
                 </div>
@@ -178,7 +205,9 @@
                 },
                 success: function (result) {
                     $("#server").removeClass('d-none')
-                    $("#serverLogo").attr('src', result.icon ??'https://cdn.discordapp.com/attachments/752130537455484999/833563394980315176/offline-internet.png')
+                    $("#serverLogo").attr('src', result.icon ??
+                        'https://cdn.discordapp.com/attachments/752130537455484999/833563394980315176/offline-internet.png'
+                        )
                     if (result.online == false) {
                         $("#serverOnline").addClass("d-none")
                         $("#serverOffline").removeClass("d-none")
@@ -190,7 +219,7 @@
                         $("#serverName").html(result.motd.html)
                         $("#serverIp").html(`<b>${serverIp}</b>`)
                         $("#serverPort").html(`<b>${result.port}</b>`)
-                        $("#serverStatus").html(result.online == true ? '<b>Online</b>' : '<b>Offline</b>')
+                        $("#serverStatus").html(result.online == true?'<b>Online</b>' : '<b>Offline</b>')
                         $("#serverVersion").html(`<b> ${result.software ?? ""} ${result.version} </b>`)
                         $("#slot").html(`${result.players.online}/${result.players.max}`)
                         let players = []
@@ -211,7 +240,8 @@
                         // })
                         // mods_ = mods_.substr(0, mods_.length - 2)
                         // $("#serverMods").html(mods_)
-                        players?.length == 0 ? $("#serverPlayers").addClass('d-none') : $("#serverPlayers").removeClass('d-none')
+                        players?.length == 0?$("#serverPlayers").addClass('d-none') : $(
+                            "#serverPlayers").removeClass('d-none')
                         let playerFlag = 0;
                         players?.forEach(player => {
                             players_ += `<b>${player}</b>, `
