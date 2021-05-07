@@ -166,7 +166,7 @@
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
     </script>
     <script>
-        const serverIp = '164.132.241.245:25617'
+        const serverIp = 'inh.mcserver.us'
         // const serverIp = 'mc.hypixel.net'
         // port     = '25566'
 
@@ -205,9 +205,8 @@
                 },
                 success: function (result) {
                     $("#server").removeClass('d-none')
-                    $("#serverLogo").attr('src', result.icon ??
-                        'https://cdn.discordapp.com/attachments/752130537455484999/833563394980315176/offline-internet.png'
-                        )
+                    $("#serverLogo").attr('src', result.icon ?? 'https://cdn.discordapp.com/attachments/752130537455484999/834404279288725544/server-icon.png')
+                    $("#serverLogo").attr('style', 'width:60px')
                     if (result.online == false) {
                         $("#serverOnline").addClass("d-none")
                         $("#serverOffline").removeClass("d-none")
