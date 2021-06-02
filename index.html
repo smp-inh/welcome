@@ -164,7 +164,7 @@
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
     </script>
     <script>
-        const serverIp = 'inh.mcserver.us'
+        var serverIp = 'inh.mcserver.us'
         $(document).ready(function () {
             getStatus()
         })
@@ -214,7 +214,7 @@
                         let playerFlag = 0;
                         let flag = 1
                         players?.forEach(player => {
-                            flag == 4 ? (players_ += `<b>${player}</b>, <br>`, flag = 0) : players_ += `<b>${player}</b>, `
+                            flag == 3? (players_ += `<b>${player}</b>, <br>`, flag = 0) : players_ += `<b>${player}</b>, `
                             playerFlag++
                             flag++
                         })
