@@ -100,7 +100,7 @@
                     <div class="card mt-4 mb-5 bg-transparent shadow">
                         <div class="card-header atas text-center card-menkrep-header text-white">
                             <div id="motd">
-                                
+
                             </div>
                         </div>
                         <div class="card-body bungkus pt-3 pb-2">
@@ -164,7 +164,7 @@
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
     </script>
     <script>
-        var serverIp = 'inh.mcserver.us'
+        var serverIp = 'inh.my-serv.xyz'
         $(document).ready(function () {
             getStatus()
         })
@@ -179,14 +179,16 @@
                 },
                 success: function (result) {
                     $("#server").removeClass('d-none')
-                    $("#serverLogo").attr('src', result.icon ?? 'https://cdn.discordapp.com/attachments/752130537455484999/834404279288725544/server-icon.png')
+                    $("#serverLogo").attr('src', result.icon ??
+                        'https://cdn.discordapp.com/attachments/752130537455484999/834404279288725544/server-icon.png'
+                    )
                     $("#serverLogo").attr('style', 'width:60px')
                     if (result.online == false) {
                         $("#serverOnline").addClass("d-none")
                         $("#serverOffline").removeClass("d-none")
                         $("#serverLogo").attr('style', 'width:64px')
                     } else {
-                        let motd = result.motd.clean
+                        let motd = result.motd.html
                         if (motd.length > 1) {
                             const tampung = motd
                             motd = ''
@@ -200,7 +202,7 @@
                         $("#motd").html(motd)
                         $("#serverIp").html(`<b>${serverIp}</b>`)
                         $("#serverPort").html(`<b>${result.port}</b>`)
-                        $("#serverStatus").html(result.online == true?'<b>Online</b>' : '<b>Offline</b>')
+                        $("#serverStatus").html(result.online == true ? '<b>Online</b>' : '<b>Offline</b>')
                         $("#serverVersion").html(`<b> ${result.software ?? ""} ${result.version} </b>`)
                         $("#slot").html(`${result.players.online}/${result.players.max}`)
                         let players = []
@@ -209,12 +211,13 @@
                             players = result.players.list
                             players?.sort()
                         }
-                        players?.length == 0?$("#serverPlayers").addClass('d-none') : $(
+                        players?.length == 0 ? $("#serverPlayers").addClass('d-none') : $(
                             "#serverPlayers").removeClass('d-none')
                         let playerFlag = 0;
                         let flag = 1
                         players?.forEach(player => {
-                            flag == 3? (players_ += `<b>${player}</b>, <br>`, flag = 0) : players_ += `<b>${player}</b>, `
+                            flag == 3 ? (players_ += `<b>${player}</b>, <br>`, flag = 0) :
+                                players_ += `<b>${player}</b>, `
                             playerFlag++
                             flag++
                         })
@@ -230,4 +233,5 @@
         }, 30000);
     </script>
 </body>
+
 </html>
